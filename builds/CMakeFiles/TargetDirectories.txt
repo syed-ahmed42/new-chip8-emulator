@@ -1,0 +1,3 @@
+/home/cake/projects/chip8-emulator/builds/CMakeFiles/rebuild_cache.dir
+/home/cake/projects/chip8-emulator/builds/CMakeFiles/edit_cache.dir
+/home/cake/projects/chip8-emulator/builds/CMakeFiles/pepsi.dir

@@ -1,10 +1,15 @@
 #include <stdlib.h>
 #include <stdint.h>
+#include "instructions.h"
+#include "chip8.h"
 
 void start();
 
-int main(int argc, char **argv)
+int main(void)
 {
-    start();
+    struct chip_t c8;
+
+    start(&c8);
+    cls(&c8);
     return 0;
 }

@@ -1,8 +1,9 @@
 #include "SDL2/SDL.h"
 #include <stdlib.h>
 #include <stdint.h>
+#include "chip8.h"
 
-int start()
+int start(struct chip_t *c8)
 {
     SDL_Window *window;
 
@@ -33,29 +34,21 @@ int start()
         return 1;
     }
     uint32_t *buffer = malloc((640 * 480) * sizeof(uint32_t));
-    uint32_t screen[640][480];
-    for (int i = 0; i < 640; i++)
+    for (int i = 0; i < 640 * 480; i++)
     {
-        for (int j = 0; j < 480; j++)
-        {
-            screen[i][j] = 0x000000FF;
-        }
+        c8->screen[i] = 0x000000FF;
     }
-
-    for (int i = 0; i < 240; i++)
+    //Controlling which part of the screen 
+    //is gonna be white
+    for (int i = 0; i < 640 * 47; i++)
     {
-        for (int j = 0; j < 160; j++)
-        {
-            screen[i][j] = 0xFFFFFF00;
-        }
+        c8->screen[i] = 0xFFFFFFFF;
     }
-
-    for (int i = 0; i < 640; i++)
+    //Transferring the entire screen
+    //to the buffer
+    for (int i = 0; i < 640 * 480; i++)
     {
-        for (int j = 0; j < 480; j++)
-        {
-            buffer[(j * 640) + i] = screen[i][j];
-        }
+        buffer[i] = c8->screen[i];
     }
     SDL_Texture *texture = SDL_CreateTexture(
             renderer,
@@ -68,6 +61,7 @@ int start()
     SDL_RenderClear(renderer);
     SDL_RenderPresent(renderer);
     
+    //Updating the screen with the buffer
     SDL_UpdateTexture(texture, NULL, buffer, 640 * sizeof(uint32_t));
     SDL_RenderClear(renderer);
     SDL_RenderCopy(renderer, texture, NULL, NULL);
