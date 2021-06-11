@@ -9,5 +9,4 @@ void cls(struct chip_t *c8)
     {
         c8->screen[i] = 0;       
     }
-
 }
