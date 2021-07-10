@@ -1,6 +1,6 @@
 file(REMOVE_RECURSE
+  "CMakeFiles/pepsi.dir/src/chip8.c.o"
   "CMakeFiles/pepsi.dir/src/init.c.o"
-  "CMakeFiles/pepsi.dir/src/instructions.c.o"
   "CMakeFiles/pepsi.dir/src/main.c.o"
   "pepsi"
   "pepsi.pdb"

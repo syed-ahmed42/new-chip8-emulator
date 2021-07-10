@@ -83,31 +83,31 @@ CMakeFiles/pepsi.dir/src/main.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/pepsi.dir/src/main.c.s"
 	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/cake/projects/chip8-emulator/src/main.c -o CMakeFiles/pepsi.dir/src/main.c.s
 
-CMakeFiles/pepsi.dir/src/instructions.c.o: CMakeFiles/pepsi.dir/flags.make
-CMakeFiles/pepsi.dir/src/instructions.c.o: ../src/instructions.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/cake/projects/chip8-emulator/builds/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building C object CMakeFiles/pepsi.dir/src/instructions.c.o"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/pepsi.dir/src/instructions.c.o   -c /home/cake/projects/chip8-emulator/src/instructions.c
+CMakeFiles/pepsi.dir/src/chip8.c.o: CMakeFiles/pepsi.dir/flags.make
+CMakeFiles/pepsi.dir/src/chip8.c.o: ../src/chip8.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/cake/projects/chip8-emulator/builds/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building C object CMakeFiles/pepsi.dir/src/chip8.c.o"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/pepsi.dir/src/chip8.c.o   -c /home/cake/projects/chip8-emulator/src/chip8.c
 
-CMakeFiles/pepsi.dir/src/instructions.c.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/pepsi.dir/src/instructions.c.i"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/cake/projects/chip8-emulator/src/instructions.c > CMakeFiles/pepsi.dir/src/instructions.c.i
+CMakeFiles/pepsi.dir/src/chip8.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/pepsi.dir/src/chip8.c.i"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/cake/projects/chip8-emulator/src/chip8.c > CMakeFiles/pepsi.dir/src/chip8.c.i
 
-CMakeFiles/pepsi.dir/src/instructions.c.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/pepsi.dir/src/instructions.c.s"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/cake/projects/chip8-emulator/src/instructions.c -o CMakeFiles/pepsi.dir/src/instructions.c.s
+CMakeFiles/pepsi.dir/src/chip8.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/pepsi.dir/src/chip8.c.s"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/cake/projects/chip8-emulator/src/chip8.c -o CMakeFiles/pepsi.dir/src/chip8.c.s
 
 # Object files for target pepsi
 pepsi_OBJECTS = \
 "CMakeFiles/pepsi.dir/src/init.c.o" \
 "CMakeFiles/pepsi.dir/src/main.c.o" \
-"CMakeFiles/pepsi.dir/src/instructions.c.o"
+"CMakeFiles/pepsi.dir/src/chip8.c.o"
 
 # External object files for target pepsi
 pepsi_EXTERNAL_OBJECTS =
 
 pepsi: CMakeFiles/pepsi.dir/src/init.c.o
 pepsi: CMakeFiles/pepsi.dir/src/main.c.o
-pepsi: CMakeFiles/pepsi.dir/src/instructions.c.o
+pepsi: CMakeFiles/pepsi.dir/src/chip8.c.o
 pepsi: CMakeFiles/pepsi.dir/build.make
 pepsi: /usr/lib/x86_64-linux-gnu/libSDL2.so
 pepsi: CMakeFiles/pepsi.dir/link.txt

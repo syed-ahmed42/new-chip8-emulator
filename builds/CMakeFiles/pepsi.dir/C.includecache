@@ -10,13 +10,13 @@
 stdint.h
 -
 
-/home/cake/projects/chip8-emulator/src/init.c
-SDL2/SDL.h
-/home/cake/projects/chip8-emulator/src/SDL2/SDL.h
-stdlib.h
--
-stdint.h
--
+/home/cake/projects/chip8-emulator/src/chip8.c
 chip8.h
 /home/cake/projects/chip8-emulator/src/chip8.h
+stdio.h
+-
+string.h
+-
+stdlib.h
+-
 

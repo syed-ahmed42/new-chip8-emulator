@@ -5,7 +5,7 @@ project(pepsi)
 set(SRC_FILE
     src/init.c
     src/main.c
-    src/instructions.c
+    src/chip8.c
 )
 set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -Wall -Wextra -Wpedantic -g")
 

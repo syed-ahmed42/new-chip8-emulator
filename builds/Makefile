@@ -123,6 +123,33 @@ pepsi/fast:
 	$(MAKE) -f CMakeFiles/pepsi.dir/build.make CMakeFiles/pepsi.dir/build
 .PHONY : pepsi/fast
 
+src/chip8.o: src/chip8.c.o
+
+.PHONY : src/chip8.o
+
+# target to build an object file
+src/chip8.c.o:
+	$(MAKE) -f CMakeFiles/pepsi.dir/build.make CMakeFiles/pepsi.dir/src/chip8.c.o
+.PHONY : src/chip8.c.o
+
+src/chip8.i: src/chip8.c.i
+
+.PHONY : src/chip8.i
+
+# target to preprocess a source file
+src/chip8.c.i:
+	$(MAKE) -f CMakeFiles/pepsi.dir/build.make CMakeFiles/pepsi.dir/src/chip8.c.i
+.PHONY : src/chip8.c.i
+
+src/chip8.s: src/chip8.c.s
+
+.PHONY : src/chip8.s
+
+# target to generate assembly for a file
+src/chip8.c.s:
+	$(MAKE) -f CMakeFiles/pepsi.dir/build.make CMakeFiles/pepsi.dir/src/chip8.c.s
+.PHONY : src/chip8.c.s
+
 src/init.o: src/init.c.o
 
 .PHONY : src/init.o
@@ -149,33 +176,6 @@ src/init.s: src/init.c.s
 src/init.c.s:
 	$(MAKE) -f CMakeFiles/pepsi.dir/build.make CMakeFiles/pepsi.dir/src/init.c.s
 .PHONY : src/init.c.s
-
-src/instructions.o: src/instructions.c.o
-
-.PHONY : src/instructions.o
-
-# target to build an object file
-src/instructions.c.o:
-	$(MAKE) -f CMakeFiles/pepsi.dir/build.make CMakeFiles/pepsi.dir/src/instructions.c.o
-.PHONY : src/instructions.c.o
-
-src/instructions.i: src/instructions.c.i
-
-.PHONY : src/instructions.i
-
-# target to preprocess a source file
-src/instructions.c.i:
-	$(MAKE) -f CMakeFiles/pepsi.dir/build.make CMakeFiles/pepsi.dir/src/instructions.c.i
-.PHONY : src/instructions.c.i
-
-src/instructions.s: src/instructions.c.s
-
-.PHONY : src/instructions.s
-
-# target to generate assembly for a file
-src/instructions.c.s:
-	$(MAKE) -f CMakeFiles/pepsi.dir/build.make CMakeFiles/pepsi.dir/src/instructions.c.s
-.PHONY : src/instructions.c.s
 
 src/main.o: src/main.c.o
 
@@ -213,12 +213,12 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... edit_cache"
 	@echo "... pepsi"
+	@echo "... src/chip8.o"
+	@echo "... src/chip8.i"
+	@echo "... src/chip8.s"
 	@echo "... src/init.o"
 	@echo "... src/init.i"
 	@echo "... src/init.s"
-	@echo "... src/instructions.o"
-	@echo "... src/instructions.i"
-	@echo "... src/instructions.s"
 	@echo "... src/main.o"
 	@echo "... src/main.i"
 	@echo "... src/main.s"

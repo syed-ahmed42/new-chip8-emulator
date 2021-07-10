@@ -9,6 +9,7 @@
 
 typedef uint8_t byte;
 typedef uint16_t word;
+typedef uint16_t address;
 
 static const byte digits[] = {
     0xF0, 0x90, 0x90, 0x90, 0xF0, // 0
@@ -30,11 +31,18 @@ static const byte digits[] = {
 };
 
 struct chip_t{
-    byte memory[MEMSIZE];
+    address memory[MEMSIZE];
+    address pc;
+
     byte v[16];
-    word i;
+    address i;
+
+    address stack[16];
+    byte sp;
+
     byte sound_timer;
     byte delay_timer;
+
     uint32_t screen[SCREEN_HEIGHT * SCREEN_WIDTH];
 
 };
