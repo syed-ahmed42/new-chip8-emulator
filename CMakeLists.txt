@@ -3,7 +3,7 @@ cmake_minimum_required(VERSION 3.16.0)
 project(pepsi)
 
 set(SRC_FILE
-    src/init.c
+    src/libsdl.c
     src/main.c
     src/chip8.c
 )

@@ -12,7 +12,43 @@
 #define PIXEL_OFF 0
 #define PIXEL_ON 1
 
-typedef void (*opcode_table_t) (struct chip_t *cpu, word opcode);
+static int is_debug = 0;
+
+static void log(const char *msg)
+{
+    if (is_debug)
+    {
+        printf("MESSAGE: %s\n", msg);
+    }
+}
+
+static void set_debug_mode(int debug_mode)
+{
+    is_debug = debug_mode;
+}
+
+typedef void (*opcode_table_t)(struct chip_t *cpu, word opcode);
+
+static int global_delta;
+
+static int hexcodes[] = {
+    0xF0, 0x90, 0x90, 0x90, 0xF0, // 0
+    0x20, 0x60, 0x20, 0x20, 0x70, // 1
+    0xF0, 0x10, 0xF0, 0x80, 0xF0, // 2
+    0xF0, 0x10, 0xF0, 0x10, 0xF0, // 3
+    0x90, 0x90, 0xF0, 0x10, 0x10, // 4
+    0xF0, 0x80, 0xF0, 0x10, 0xF0, // 5
+    0xF0, 0x80, 0xF0, 0x90, 0xF0, // 6
+    0xF0, 0x10, 0x20, 0x40, 0x40, // 7
+    0xF0, 0x90, 0xF0, 0x90, 0xF0, // 8
+    0xF0, 0x90, 0xF0, 0x10, 0xF0, // 9
+    0xF0, 0x90, 0xF0, 0x90, 0x90, // A
+    0xE0, 0x90, 0xE0, 0x90, 0xE0, // B
+    0xF0, 0x80, 0x80, 0x80, 0xF0, // C
+    0xE0, 0x90, 0x90, 0x90, 0xE0, // D
+    0xF0, 0x80, 0xF0, 0x80, 0xF0, // E
+    0xF0, 0x80, 0xF0, 0x80, 0x80  // F
+};
 
 static void nibble_0(struct chip_t *cpu, word opcode)
 {
@@ -177,9 +213,104 @@ static void nibble_D(struct chip_t *cpu, word opcode)
     }
 }
 
+static void nibble_E(struct chip_t *cpu, word opcode)
+{
+    char key = cpu->v[OPCODE_X(opcode)];
+
+    if (OPCODE_KK(opcode) == 0x9E)
+    {
+        if (cpu->keydown && cpu->keydown(key & 0xF))
+        {
+            cpu->pc = (cpu->pc + 2) & 0xFFF;
+        }
+    }
+    else if (OPCODE_KK(opcode) == 0xA1)
+    {
+        if (cpu->keydown && !cpu->keydown(key & 0xF))
+        {
+            cpu->pc = (cpu->pc + 2) & 0xFFF;
+        }
+    }
+}
+
+static void nibble_F(struct chip_t *cpu, word opcode)
+{
+    byte x = OPCODE_X(opcode);
+
+    switch(OPCODE_KK(opcode))
+    {
+        case 0x07:
+            cpu->v[x] = cpu->delay_timer;
+            break;
+        case 0x0A:
+            cpu->wait_key = OPCODE_X(opcode);
+            break;
+        case 0x15:
+            cpu->delay_timer = cpu->v[x];
+            break;
+        case 0x18:
+            cpu->sound_timer = cpu->v[x];
+            break;
+        case 0x1E:
+            cpu->i += cpu->v[x];
+            break;
+        case 0x29:
+            cpu->i = 0x50 + (cpu->v[x] & 0xF) * 5;
+            break;
+        case 0x33:
+            cpu->memory[cpu->i + 2] = cpu->v[x] % 10;
+            cpu->memory[cpu->i + 1] = (cpu->v[x] / 10) % 10;
+            cpu->memory[cpu->i] = cpu->v[x] / 100;
+            break;
+        case 0x55:
+            for (int k = 0; k <= x; k++)
+            {
+                cpu->memory[cpu->i + k] = cpu->v[k];
+            }
+            break;
+        case 0x65:
+            for (int k = 0; k <= x; k++)
+            {
+                cpu->v[k] = cpu->memory[cpu->i + k];
+            }
+            break;
+    }
+}
 static opcode_table_t nibbles[16] = {
     &nibble_0, &nibble_1, &nibble_2, &nibble_3,
     &nibble_4, &nibble_5, &nibble_6, &nibble_7,
     &nibble_8, &nibble_9, &nibble_A, &nibble_B,
-    &nibble_C, &nibble_D 
+    &nibble_C, &nibble_D, &nibble_E, &nibble_F 
 };
+
+void init(struct chip_t *cpu)
+{
+    memset(cpu, 0x00, sizeof(struct chip_t));
+    memcpy(cpu->memory + 0x50, hexcodes, 80);
+    cpu->pc = 0x200;
+    cpu->wait_key = -1;
+    global_delta = 0;
+    log("Debug mode is enabled");
+    log("Machine has been initialized");
+}
+
+void
+update_time(struct chip_t *cpu, int delta)
+{
+    global_delta += delta;
+    while (global_delta > (1000 / 60)) {
+        global_delta -= (1000 / 60);
+        if (cpu->delay_timer > 0) {
+            cpu->delay_timer--;
+        }
+        if (cpu->sound_timer > 0) {
+            if (--cpu->sound_timer == 0 && cpu->speaker) {
+                /* Disable speaker buzz. */
+                cpu->speaker(0);
+            } else if (cpu->speaker) {
+                /* Enable speaker buzz. */
+                cpu->speaker(1);
+            }
+        }
+    }
+}

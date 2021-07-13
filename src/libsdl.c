@@ -1,7 +1,6 @@
-#include "SDL2/SDL.h"
 #include <stdlib.h>
 #include <stdint.h>
-#include "chip8.h"
+#include "libsdl.h"
 
 static SDL_Window *window = NULL;
 static SDL_Renderer *renderer = NULL;
