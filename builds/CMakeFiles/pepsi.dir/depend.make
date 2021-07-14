@@ -4,10 +4,11 @@
 CMakeFiles/pepsi.dir/src/chip8.c.o: ../include/chip8.h
 CMakeFiles/pepsi.dir/src/chip8.c.o: ../src/chip8.c
 
-CMakeFiles/pepsi.dir/src/init.c.o: ../include/chip8.h
-CMakeFiles/pepsi.dir/src/init.c.o: ../src/init.c
+CMakeFiles/pepsi.dir/src/libsdl.c.o: ../include/chip8.h
+CMakeFiles/pepsi.dir/src/libsdl.c.o: ../include/libsdl.h
+CMakeFiles/pepsi.dir/src/libsdl.c.o: ../src/libsdl.c
 
 CMakeFiles/pepsi.dir/src/main.c.o: ../include/chip8.h
-CMakeFiles/pepsi.dir/src/main.c.o: ../include/instructions.h
+CMakeFiles/pepsi.dir/src/main.c.o: ../include/libsdl.h
 CMakeFiles/pepsi.dir/src/main.c.o: ../src/main.c
 

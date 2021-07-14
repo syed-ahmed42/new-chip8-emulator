@@ -35,8 +35,10 @@ struct chip_t{
 
     char wait_key;
 
+    int exit;
 };
 
-
+void init(struct chip_t *cpu);
+void update_time(struct chip_t *cpu, int delta);
 
 #endif

@@ -1,7 +1,8 @@
-#include "chip8.h"
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
+
+#include "chip8.h"
 
 #define OPCODE_NNN(opcode) (opcode & 0xFFF)
 #define OPCODE_KK(opcode) (opcode & 0xFF)
@@ -294,8 +295,7 @@ void init(struct chip_t *cpu)
     log("Machine has been initialized");
 }
 
-void
-update_time(struct chip_t *cpu, int delta)
+void update_time(struct chip_t *cpu, int delta)
 {
     global_delta += delta;
     while (global_delta > (1000 / 60)) {

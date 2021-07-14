@@ -1,61 +1,52 @@
 #include <stdlib.h>
 #include <stdint.h>
+
 #include "libsdl.h"
 
 static SDL_Window *window = NULL;
 static SDL_Renderer *renderer = NULL;
 static SDL_Texture *texture = NULL;
-//static SDL_Surface *surface = NULL;
 
-int draw(struct chip_t *c8)
+static void clean_up()
 {
-    static int num = 0;
-    if(num == 0)
+    if (window != NULL)
     {
-        for (int i = 0; i < 640 * 47; i++)
-        {
-            c8->screen[i] = 0xFFFFFFFF;
-            printf("NUM 0: %d\n", num);
-        }
+        SDL_DestroyWindow(window);
+        window = NULL;
     }
-    else
+    if (renderer != NULL)
     {
-        for (int i = 0; i < 640 * 480; i++)
-        {
-            c8->screen[i] = 0xFFFFFFFF;
-            if(num < 10)
-            printf("NUM 1: %d\n", num);
-        }
+        SDL_DestroyRenderer(renderer);
+        renderer = NULL;
     }
-
-    uint32_t* pixels = NULL;
-    int pitch;  // Pitch = 256 bytes (64 pixels * 4 bytes per pixel)
-
-    SDL_LockTexture(texture, NULL, (void**)&pixels, &pitch);
-
-    int i;
-    for (i = 0; i < 2048; i++)
+    if (texture != NULL)
     {
-        if (!c8->screen[i])
-        {
-            pixels[i] = 0x000000FF;
-        }
-        else
-        {
-            pixels[i] = 0xFFFFFFFF;
-        }
+        SDL_DestroyTexture(texture);
+        texture = NULL;
     }
+    SDL_Quit();
+}
 
+static void draw(Uint32 *from, Uint32 *to)
+{
+    for (int i = 0; i < SCREEN_WIDTH * SCREEN_HEIGHT; i++)
+    {
+        to[i] = from[i];
+    }
+}
+
+void render_display(struct chip_t *cpu)
+{
+    void *pixels;
+    int pitch;
+
+    SDL_LockTexture(texture, NULL, &pixels, &pitch);
+    draw(cpu->screen, (Uint32 *) pixels);
     SDL_UnlockTexture(texture);
 
     SDL_RenderClear(renderer);
-
     SDL_RenderCopy(renderer, texture, NULL, NULL);
-
     SDL_RenderPresent(renderer);
-
-    num++;
-    return 0;
 }
 
 int is_close_requested()
@@ -71,7 +62,7 @@ int is_close_requested()
 
 int init_SDL()
 {
-    SDL_Init(SDL_INIT_VIDEO);
+    SDL_Init(SDL_INIT_EVERYTHING);
 
     window = SDL_CreateWindow(
         "AN SDL WINDOW",
@@ -79,22 +70,20 @@ int init_SDL()
         SDL_WINDOWPOS_UNDEFINED,
         640,
         480,
-        SDL_WINDOW_OPENGL
+        SDL_WINDOW_SHOWN
     );
-
     if (window == NULL)
     {
-        printf("Failed to create window: %s\n", SDL_GetError());
+        clean_up();
         return 1;
     }
 
     renderer = SDL_CreateRenderer(window, -1, 
             SDL_RENDERER_ACCELERATED
             );
-
     if (renderer == NULL)
     {
-        printf("Failed to create renderer: %s\n", SDL_GetError());
+        clean_up();
         return 1;
     }
 
@@ -105,25 +94,13 @@ int init_SDL()
             640,
             480
     );
-    /*SDL_SetRenderDrawColor(renderer, 0xFF, 0xFF, 0xFF, 0xFF );
-    SDL_RenderClear(renderer);
-    SDL_RenderPresent(renderer);*/
+    if (texture == NULL)
+    {
+        clean_up();
+        return 1;
+    }
+
     return 0;
 }
 
-void clean_up()
-{
-    if (window != NULL)
-    {
-        SDL_DestroyWindow(window);
-    }
-    if (renderer != NULL)
-    {
-        SDL_DestroyRenderer(renderer);
-    }
-    if (texture != NULL)
-    {
-        SDL_DestroyTexture(texture);
-    }
-    SDL_Quit();
-}
+

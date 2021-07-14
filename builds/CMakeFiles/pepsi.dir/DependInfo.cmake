@@ -5,7 +5,7 @@ set(CMAKE_DEPENDS_LANGUAGES
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_C
   "/home/cake/projects/chip8-emulator/src/chip8.c" "/home/cake/projects/chip8-emulator/builds/CMakeFiles/pepsi.dir/src/chip8.c.o"
-  "/home/cake/projects/chip8-emulator/src/init.c" "/home/cake/projects/chip8-emulator/builds/CMakeFiles/pepsi.dir/src/init.c.o"
+  "/home/cake/projects/chip8-emulator/src/libsdl.c" "/home/cake/projects/chip8-emulator/builds/CMakeFiles/pepsi.dir/src/libsdl.c.o"
   "/home/cake/projects/chip8-emulator/src/main.c" "/home/cake/projects/chip8-emulator/builds/CMakeFiles/pepsi.dir/src/main.c.o"
   )
 set(CMAKE_C_COMPILER_ID "GNU")

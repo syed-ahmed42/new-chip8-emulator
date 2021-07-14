@@ -150,32 +150,32 @@ src/chip8.c.s:
 	$(MAKE) -f CMakeFiles/pepsi.dir/build.make CMakeFiles/pepsi.dir/src/chip8.c.s
 .PHONY : src/chip8.c.s
 
-src/init.o: src/init.c.o
+src/libsdl.o: src/libsdl.c.o
 
-.PHONY : src/init.o
+.PHONY : src/libsdl.o
 
 # target to build an object file
-src/init.c.o:
-	$(MAKE) -f CMakeFiles/pepsi.dir/build.make CMakeFiles/pepsi.dir/src/init.c.o
-.PHONY : src/init.c.o
+src/libsdl.c.o:
+	$(MAKE) -f CMakeFiles/pepsi.dir/build.make CMakeFiles/pepsi.dir/src/libsdl.c.o
+.PHONY : src/libsdl.c.o
 
-src/init.i: src/init.c.i
+src/libsdl.i: src/libsdl.c.i
 
-.PHONY : src/init.i
+.PHONY : src/libsdl.i
 
 # target to preprocess a source file
-src/init.c.i:
-	$(MAKE) -f CMakeFiles/pepsi.dir/build.make CMakeFiles/pepsi.dir/src/init.c.i
-.PHONY : src/init.c.i
+src/libsdl.c.i:
+	$(MAKE) -f CMakeFiles/pepsi.dir/build.make CMakeFiles/pepsi.dir/src/libsdl.c.i
+.PHONY : src/libsdl.c.i
 
-src/init.s: src/init.c.s
+src/libsdl.s: src/libsdl.c.s
 
-.PHONY : src/init.s
+.PHONY : src/libsdl.s
 
 # target to generate assembly for a file
-src/init.c.s:
-	$(MAKE) -f CMakeFiles/pepsi.dir/build.make CMakeFiles/pepsi.dir/src/init.c.s
-.PHONY : src/init.c.s
+src/libsdl.c.s:
+	$(MAKE) -f CMakeFiles/pepsi.dir/build.make CMakeFiles/pepsi.dir/src/libsdl.c.s
+.PHONY : src/libsdl.c.s
 
 src/main.o: src/main.c.o
 
@@ -216,9 +216,9 @@ help:
 	@echo "... src/chip8.o"
 	@echo "... src/chip8.i"
 	@echo "... src/chip8.s"
-	@echo "... src/init.o"
-	@echo "... src/init.i"
-	@echo "... src/init.s"
+	@echo "... src/libsdl.o"
+	@echo "... src/libsdl.i"
+	@echo "... src/libsdl.s"
 	@echo "... src/main.o"
 	@echo "... src/main.i"
 	@echo "... src/main.s"

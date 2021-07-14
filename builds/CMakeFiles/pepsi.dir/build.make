@@ -57,18 +57,18 @@ include CMakeFiles/pepsi.dir/progress.make
 # Include the compile flags for this target's objects.
 include CMakeFiles/pepsi.dir/flags.make
 
-CMakeFiles/pepsi.dir/src/init.c.o: CMakeFiles/pepsi.dir/flags.make
-CMakeFiles/pepsi.dir/src/init.c.o: ../src/init.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/cake/projects/chip8-emulator/builds/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building C object CMakeFiles/pepsi.dir/src/init.c.o"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/pepsi.dir/src/init.c.o   -c /home/cake/projects/chip8-emulator/src/init.c
+CMakeFiles/pepsi.dir/src/libsdl.c.o: CMakeFiles/pepsi.dir/flags.make
+CMakeFiles/pepsi.dir/src/libsdl.c.o: ../src/libsdl.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/cake/projects/chip8-emulator/builds/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building C object CMakeFiles/pepsi.dir/src/libsdl.c.o"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/pepsi.dir/src/libsdl.c.o   -c /home/cake/projects/chip8-emulator/src/libsdl.c
 
-CMakeFiles/pepsi.dir/src/init.c.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/pepsi.dir/src/init.c.i"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/cake/projects/chip8-emulator/src/init.c > CMakeFiles/pepsi.dir/src/init.c.i
+CMakeFiles/pepsi.dir/src/libsdl.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/pepsi.dir/src/libsdl.c.i"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/cake/projects/chip8-emulator/src/libsdl.c > CMakeFiles/pepsi.dir/src/libsdl.c.i
 
-CMakeFiles/pepsi.dir/src/init.c.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/pepsi.dir/src/init.c.s"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/cake/projects/chip8-emulator/src/init.c -o CMakeFiles/pepsi.dir/src/init.c.s
+CMakeFiles/pepsi.dir/src/libsdl.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/pepsi.dir/src/libsdl.c.s"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/cake/projects/chip8-emulator/src/libsdl.c -o CMakeFiles/pepsi.dir/src/libsdl.c.s
 
 CMakeFiles/pepsi.dir/src/main.c.o: CMakeFiles/pepsi.dir/flags.make
 CMakeFiles/pepsi.dir/src/main.c.o: ../src/main.c
@@ -98,14 +98,14 @@ CMakeFiles/pepsi.dir/src/chip8.c.s: cmake_force
 
 # Object files for target pepsi
 pepsi_OBJECTS = \
-"CMakeFiles/pepsi.dir/src/init.c.o" \
+"CMakeFiles/pepsi.dir/src/libsdl.c.o" \
 "CMakeFiles/pepsi.dir/src/main.c.o" \
 "CMakeFiles/pepsi.dir/src/chip8.c.o"
 
 # External object files for target pepsi
 pepsi_EXTERNAL_OBJECTS =
 
-pepsi: CMakeFiles/pepsi.dir/src/init.c.o
+pepsi: CMakeFiles/pepsi.dir/src/libsdl.c.o
 pepsi: CMakeFiles/pepsi.dir/src/main.c.o
 pepsi: CMakeFiles/pepsi.dir/src/chip8.c.o
 pepsi: CMakeFiles/pepsi.dir/build.make
